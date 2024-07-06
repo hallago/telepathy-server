@@ -1,0 +1,98 @@
+{
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "An example of gin",
+        "title": "Telepathy API",
+        "termsOfService": "https://github.com/hallago/telepathy-server",
+        "contact": {},
+        "license": {
+            "name": "MIT",
+            "url": "https://github.com/hallago/telepathy-server/blob/main/LICENSE"
+        },
+        "version": "0.1.1"
+    },
+    "paths": {
+        "/api/playerlist/{team_id}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get player list by team id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "TEAM ID",
+                        "name": "team_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/teamlist": {
+            "get": {
+                "description": "구단정보 가져오기",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "팀관련 API"
+                ],
+                "summary": "Get team list",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "app.Response": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "data": {},
+                "msg": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "X-api-key",
+            "in": "header"
+        }
+    }
+}
